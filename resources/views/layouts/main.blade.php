@@ -29,11 +29,12 @@
 
                 <ul class="navbar-nav ms-auto">
 
-                    <li class="nav-item"></li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/">
                             Home
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/products">
                             Products
@@ -46,7 +47,16 @@
                         </a>
                     </li>
 
-                </ul>
+                    <li class="nav-item ms-2">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+
+                </ul>   
 
             </div>
 
