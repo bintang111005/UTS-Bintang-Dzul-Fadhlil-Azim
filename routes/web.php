@@ -47,3 +47,11 @@ Route::post('/login', [AuthController::class, 'login'])
 
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
+
+    Route::middleware(['auth.manual'])->group(function () {
+
+    Route::resource('categories', CategoryController::class);
+
+    Route::get('/products',
+        [ProductController::class,'index']);
+});
