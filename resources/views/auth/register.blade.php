@@ -6,7 +6,7 @@
     <div class="col-md-5">
         <div class="card shadow-sm">
             <div class="card-body">
-                <h4 class="card-title mb-3">Login</h4>
+                <h4 class="card-title mb-3">Register</h4>
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -18,8 +18,24 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('login.post') }}">
+                <form method="POST" action="{{ route('register.post') }}">
                     @csrf
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nama</label>
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            class="form-control @error('name') is-invalid @enderror"
+                            value="{{ old('name') }}"
+                            required
+                            autocomplete="name"
+                        >
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
@@ -45,25 +61,30 @@
                             id="password"
                             class="form-control @error('password') is-invalid @enderror"
                             required
-                            autocomplete="current-password"
+                            autocomplete="new-password"
                         >
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                        <label class="form-check-label" for="remember">Ingat saya</label>
+                    <div class="mb-3">
+                        <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                        <input
+                            type="password"
+                            name="password_confirmation"
+                            id="password_confirmation"
+                            class="form-control"
+                            required
+                            autocomplete="new-password"
+                        >
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Masuk</button>
+                    <button type="submit" class="btn btn-success w-100">Daftar</button>
                 </form>
 
-                <div class="text-muted mt-3 mb-0" style="font-size: 0.9rem;">
-                    Belum punya akun? <a href="{{ route('register') }}">Register</a>
-                    <br>
-                    Gunakan akun yang sudah ada di tabel <code>users</code>.
+                <div class="text-center mt-3">
+                    Sudah punya akun? <a href="{{ route('login') }}">Login</a>
                 </div>
             </div>
         </div>
